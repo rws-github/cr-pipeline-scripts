@@ -11,7 +11,7 @@
 
 set -x
 
-SCRIPT_DIR=`dirname $0`
+SCRIPT_DIR=`dirname $BASH_SOURCE`
 
 ./$SCRIPT_DIR/deploy.sh
 ./$SCRIPT_DIR/test.sh

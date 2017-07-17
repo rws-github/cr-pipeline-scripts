@@ -15,7 +15,7 @@
 
 set -x
 
-SCRIPT_DIR=`dirname $0`
+SCRIPT_DIR=`dirname $BASH_SOURCE`
 
 . $SCRIPT_DIR/app-names.sh
 . $SCRIPT_DIR/colors.sh
