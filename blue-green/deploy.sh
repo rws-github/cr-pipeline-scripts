@@ -41,10 +41,12 @@ function main {
     fi
 
     # set the environment properties from stage environment vars
+    set +x
     IFS=',' read -ra PROP <<< "$IDS_OUTPUT_PROPS"
     for p in "${PROP[@]}"; do
         set_env "$p"
     done
+    set -x
 
     # add a blue route for testing
     if ! cf map-route "$BLUE" "$DOMAIN" -n "$BLUE"; then
@@ -70,7 +72,7 @@ function set_env {
         error "Required environment variable, '$name', is not specified."
     fi
     
-    if ! cf set-env $BLUE $name "$value"; then
+    if ! cf set-env $BLUE $name "$value" > /dev/null 2>&1; then
         error "Error setting environment property '$name'"
     fi 
 }
