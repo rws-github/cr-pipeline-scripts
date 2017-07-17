@@ -49,8 +49,8 @@ if [ $OLD_APP_EXISTS ]; then
 		# rename old app to blue
 		cf rename "$GREY" "$BLUE"
 
-		# wait for an inflight requests to finish before stopping
-		sleep 30
+		# wait for an inflight requests to finish and for the unmap to take effect before stopping
+		sleep 120
 			
 		# stop old app
 		cf stop "$BLUE"
