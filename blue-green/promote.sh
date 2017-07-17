@@ -41,7 +41,7 @@ if [ $OLD_APP_EXISTS ]; then
 		cf map-route "$GREY" "$DOMAIN" -n "$BLUE"
 
 		# wait for the new app to route
-		sleep 15
+		sleep 120
 
 		# remove green from old app
 		cf unmap-route "$GREY" "$DOMAIN" -n "$CF_APP"
