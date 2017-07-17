@@ -1,0 +1,25 @@
+{
+  "name": "cr-pipeline-scripts_cloudant",
+  "version": "1.0.0",
+  "description": "Script that uses couchmigrate to ensure design documents.",
+  "author": "Ryan Smith (rws@us.ibm.com)",
+  "license": "IBM Confidential",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rws-github/cr-pipeline-scripts"
+  },
+  "engines": {
+    "npm": ">-=3.10.3",
+    "node": ">=6.5.0"
+  },
+  "scripts": {
+    "start": "node init-database.js"
+  },
+  "dependencies": {
+    "async": "^2.1.2",
+    "cloudant": "^1.6.2",
+    "colors": "^1.1.2",
+    "couchmigrate": "0.0.2"
+  }
+}
