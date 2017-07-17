@@ -26,6 +26,9 @@ chmod +x ../cr-pipeline-scripts/blue-green/*.sh
 ### To use the Cloudant design document init scripts:
 
 ``` sh
+#!/bin/bash
+export PATH=/opt/IBM/node-v6.2.2/bin:$PATH
+
 export CLOUDANT_URL=...
 export CLOUDANT_DB=release-events-stage1
 export DESIGN_DIR=`pwd`/deploy/design
