@@ -9,8 +9,6 @@
 # Contract with IBM Corp.
 ###############################################################################
 
-set +x
-
 SCRIPT_DIR=`dirname $0`
 
 . $SCRIPT_DIR/app-names.sh

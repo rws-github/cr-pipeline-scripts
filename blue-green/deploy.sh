@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 ###############################################################################
 # Licensed Materials - Property of IBM
@@ -12,8 +12,6 @@
 # This script deploys the new version of the app to the blue (test) route.
 # All environment variables defined in the Pipeline stage are set on the app.
 # This script should be executed from the base directory intended to be pushed.
-
-set -x
 
 SCRIPT_DIR=`dirname $BASH_SOURCE`
 
@@ -41,12 +39,10 @@ function main {
     fi
 
     # set the environment properties from stage environment vars
-    set +x
     IFS=',' read -ra PROP <<< "$IDS_OUTPUT_PROPS"
     for p in "${PROP[@]}"; do
         set_env "$p"
     done
-    set -x
 
     # add a blue route for testing
     if ! cf map-route "$BLUE" "$DOMAIN" -n "$BLUE"; then

@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 ###############################################################################
 # Licensed Materials - Property of IBM
@@ -10,8 +10,6 @@
 ###############################################################################
 
 # This script transitions the blue (test) app to the green (production) app with no downtime.
-
-set -x
 
 SCRIPT_DIR=`dirname $BASH_SOURCE`
 

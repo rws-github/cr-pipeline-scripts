@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 ###############################################################################
 # Licensed Materials - Property of IBM
@@ -8,8 +8,6 @@
 # Use, duplication or disclosure restricted by GSA ADP Schedule
 # Contract with IBM Corp.
 ###############################################################################
-
-set -x
 
 SCRIPT_DIR=`dirname $BASH_SOURCE`
 
