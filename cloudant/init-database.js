@@ -14,6 +14,7 @@
  */
 var colors = require('colors/safe')
 var dbUtil = require('./db-util')
+var fs = require('fs')
 
 var url = process.env.CLOUDANT_INIT_URL || process.env.CLOUDANT_URL
 var databaseName = process.env.CLOUDANT_DB
