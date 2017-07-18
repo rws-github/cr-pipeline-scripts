@@ -44,6 +44,11 @@ function main {
         set_env "$p"
     done
 
+    # Set the build version info for the /version endpoint.
+    if [ -f ".pipeline_build_id" ]; then
+        cf set-env $BLUE BUILD_NUMBER "$(<.pipeline_build_id)" || exit 1
+    fi
+
     # add a blue route for testing
     if ! cf map-route "$BLUE" "$DOMAIN" -n "$BLUE"; then
         error "Could not add unsuffixed route to this app."

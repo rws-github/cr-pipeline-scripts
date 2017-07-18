@@ -48,6 +48,13 @@ do
             grep -q '^{"status":"PASS"' $TMPDIR/curl.log || CURL_STATUS=1
         fi
     fi
+    if [ $TEST_STATUS_NUMERIC ]; then
+        # status returns JSON and we check to make sure the status in it is a numeric of 0 and not 1
+        if [[ $CURL_STATUS -eq 0 ]]; then
+            grep -q '"status":0' $TMPDIR/curl.log || CURL_STATUS=1
+            grep -q '"status":1' $TMPDIR/curl.log && CURL_STATUS=1
+        fi
+    fi
     if [[ $CURL_STATUS -ne 0 ]]; then
         echo -e "\nFailed Test Attempt Log:"
         echo -e "================================================================================"
