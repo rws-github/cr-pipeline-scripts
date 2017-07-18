@@ -26,6 +26,20 @@ if (!url || !databaseName || !designDir) {
 
 console.log('Cloudant database target is %s', databaseName)
 
+function updateDatabase (url, databaseName, designDir) {
+  if (fs.existsSync(`${designDir}/view`)) {
+    dbUtil.updateDesignDocs(url, databaseName, `${designDir}/view`, function () {
+      dbUtil.updateQueryIndexes(url, databaseName, `${designDir}/query`, function () {
+        console.log(colors.green('\nDatabase Upgrade Complete'))
+      })
+    })
+  } else {
+    dbUtil.updateDesignDocs(url, databaseName, designDir, function () {
+      console.log(colors.green('\nDatabase Upgrade Complete'))
+    })
+  }
+}
+
 dbUtil.checkIfDatabaseExists(url, databaseName, function (existsCheckError, databaseExists) {
   if (existsCheckError) {
     console.error('Error checking if %s database exists', databaseName)
@@ -40,19 +54,11 @@ dbUtil.checkIfDatabaseExists(url, databaseName, function (existsCheckError, data
         process.exit(1)
       } else {
         console.log('Database %s created', databaseName)
-        dbUtil.updateDesignDocs(url, databaseName, `${designDir}/view`, function () {
-          dbUtil.updateQueryIndexes(url, databaseName, `${designDir}/query`, function () {
-            console.log(colors.green('\nDatabase Upgrade Complete'))
-          })
-        })
+        updateDatabase(url, databaseName, designDir)
       }
     })
   } else {
     console.log('Database %s exists', databaseName)
-    dbUtil.updateDesignDocs(url, databaseName, `${designDir}/view`, function () {
-      dbUtil.updateQueryIndexes(url, databaseName, `${designDir}/query`, function () {
-        console.log(colors.green('\nDatabase Upgrade Complete'))
-      })
-    })
+    updateDatabase(url, databaseName, designDir)
   }
 })
