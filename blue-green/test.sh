@@ -30,11 +30,11 @@ echo -e "\n${label_color}Testing new app - ${green}$TEST_URL${no_color}"
 MAX_RETRIES=10
 RETRY_DELAY=5
 TEST_RETRIES=0
-CURL_STATUS=0
 
 # while instead of curl --retry to support 404 responses
 while [ $TEST_RETRIES -lt $MAX_RETRIES ]
 do
+    CURL_STATUS=0
     # -k: Accept self-signed certs.
     # -s: Disable the status bar.
     # -v: Display the entire conversation.
