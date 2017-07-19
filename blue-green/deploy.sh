@@ -49,6 +49,12 @@ function main {
         cf set-env $BLUE BUILD_NUMBER "$(<.pipeline_build_id)" || exit 1
     fi
 
+    # bind services if defined
+    IFS=',' read -ra SERVICE_NAME_ARRAY <<< "$SERVICE_NAMES"
+    for p in "${SERVICE_NAME_ARRAY[@]}"; do
+        cf bind-service "$BLUE" "$p"
+    done
+
     # add a blue route for testing
     if ! cf map-route "$BLUE" "$DOMAIN" -n "$BLUE"; then
         error "Could not add unsuffixed route to this app."
