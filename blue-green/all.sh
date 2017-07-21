@@ -11,6 +11,6 @@
 
 SCRIPT_DIR=`dirname $BASH_SOURCE`
 
-./$SCRIPT_DIR/deploy.sh
-./$SCRIPT_DIR/test.sh
-./$SCRIPT_DIR/promote.sh
+./$SCRIPT_DIR/deploy.sh | while IFS= read -r line; do echo "$(date '+%Y-%m-%d %T %Z') [deploy] - $line"; done
+./$SCRIPT_DIR/test.sh | while IFS= read -r line; do echo "$(date '+%Y-%m-%d %T %Z') [test] - $line"; done
+./$SCRIPT_DIR/promote.sh | while IFS= read -r line; do echo "$(date '+%Y-%m-%d %T %Z') [promote] - $line"; done
