@@ -14,10 +14,11 @@
     "node": ">=6.5.0"
   },
   "scripts": {
-    "start": "node init-database.js"
+    "start": "./node_modules/.bin/babel-node init-database.js"
   },
   "dependencies": {
     "async": "^2.1.2",
+    "babel-cli": "^6.24.1",
     "cloudant": "^1.6.2",
     "colors": "^1.1.2",
     "couchmigrate": "0.0.2"

@@ -19,6 +19,7 @@ var fs = require('fs')
 var url = process.env.CLOUDANT_INIT_URL || process.env.CLOUDANT_URL
 var databaseName = process.env.CLOUDANT_DB
 const designDir = process.env.DESIGN_DIR
+const seedFilePath = process.env.CLOUDANT_SEED
 
 if (!url || !databaseName || !designDir) {
   console.error('CLOUDANT_INIT_URL or CLOUDANT_URL, CLOUDANT_DB and DESIGN_DIR are required environment variables.')
@@ -26,6 +27,14 @@ if (!url || !databaseName || !designDir) {
 }
 
 console.log('Cloudant database target is %s', databaseName)
+
+function seedDatabase (url, databaseName) {
+  if (seedFilePath) {
+    console.log('Seeding database')
+    require(seedFilePath)
+    console.log(colors.green('\nDatabase seeding Complete'))
+  }
+}
 
 function updateDatabase (url, databaseName, designDir) {
   if (fs.existsSync(`${designDir}/view`)) {
@@ -37,6 +46,7 @@ function updateDatabase (url, databaseName, designDir) {
   } else {
     dbUtil.updateDesignDocs(url, databaseName, designDir, function () {
       console.log(colors.green('\nDatabase Upgrade Complete'))
+      seedDatabase()
     })
   }
 }
