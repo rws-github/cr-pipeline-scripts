@@ -31,8 +31,15 @@ console.log('Cloudant database target is %s', databaseName)
 function seedDatabase (url, databaseName) {
   if (seedFilePath) {
     console.log('Seeding database')
-    require(seedFilePath)
-    console.log(colors.green('\nDatabase seeding Complete'))
+    var seed = require(seedFilePath)
+    seed(function (seedError) {
+      if (seedError) {
+        console.error('Database %s seed failed', databaseName)
+        console.error(seedError.message)
+        process.exit(1)
+      }
+      console.log(colors.green('\nDatabase Seed Complete'))
+    })
   }
 }
 

@@ -39,6 +39,8 @@ export DESIGN_DIR=`pwd`/design
 git clone --depth=1 https://github.com/rws-github/cr-pipeline-scripts.git ../cr-pipeline-scripts
 chmod +x ../cr-pipeline-scripts/cloudant/*.sh
 
+# If you want to run a seed script to:
+# export CLOUDANT_SEED=`pwd`/seed.js
 ../cr-pipeline-scripts/cloudant/init.sh
 ```
 
