@@ -9,8 +9,6 @@
 # Contract with IBM Corp.
 ###############################################################################
 
-set -e
-
 SCRIPT_DIR=`dirname $BASH_SOURCE`
 PREVIOUS_DIR=`pwd`
 
