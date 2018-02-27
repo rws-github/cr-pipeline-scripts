@@ -26,7 +26,7 @@
     "babel-preset-es2015": "6.16.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "6.16.0",
-    "cloudant": "^1.6.2",
+    "cloudant": "1.6.2",
     "colors": "^1.1.2",
     "couchmigrate": "0.0.2"
   }
